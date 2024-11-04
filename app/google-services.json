@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "659824591886",
+    "project_id": "student-tutor-connect",
+    "storage_bucket": "student-tutor-connect.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659824591886:android:5d9ee898ff5bd17b0ba85f",
+        "android_client_info": {
+          "package_name": "com.example.fhenixproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAs2Xel_LJBqkE__cIUDHvctyTKgShUx2g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
