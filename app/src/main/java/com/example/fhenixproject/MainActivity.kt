@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val fragmentTransaction =supportFragmentManager.beginTransaction()
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragment_container_view, OnboardingFragment())
         fragmentTransaction.commit()
     }

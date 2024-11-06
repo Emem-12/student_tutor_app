@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="175dp"
-    >
+    android:layout_height="175dp">
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
         android:layout_width="match_parent"
@@ -12,45 +12,57 @@
         app:cardElevation="0dp"
         android:layout_marginVertical="15dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="150dp"
+        android:layout_width="145dp"
         android:layout_height="0dp"
         android:src="@drawable/image"
         android:layout_margin="5dp"
         android:backgroundTint="#A89191"
         app:layout_constraintStart_toStartOf="@id/card"
         app:layout_constraintBottom_toBottomOf="@id/card"
-        app:layout_constraintTop_toTopOf="@id/card"/>
+        app:layout_constraintTop_toTopOf="@id/card" />
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-app:layout_constraintStart_toEndOf="@id/image"
-        android:text="Cassie Valdez"
-        android:textSize="15dp"
+        android:layout_width="141dp"
+        android:layout_height="27dp"
+        app:layout_constraintStart_toEndOf="@id/image"
+        android:text="@string/cassie_valdez"
+        android:textSize="15sp"
         android:maxLines="1"
-
-        app:layout_constraintBottom_toTopOf="@id/subject"
+        app:layout_constraintBottom_toTopOf="@id/rating"
         app:layout_constraintTop_toTopOf="@id/image"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
-
+<RatingBar
+    android:id="@+id/rating"
+    android:layout_width="wrap_content"
+    android:layout_height="40dp"
+    android:numStars="5"
+    android:stepSize="0.5"
+    android:rating="3.5"
+    android:scaleX="0.2"
+    android:scaleY="0.2"
+    android:progressTint="#FFC107"
+    android:layout_marginStart="54dp"
+    app:layout_constraintTop_toTopOf="@id/name"
+    app:layout_constraintStart_toStartOf="@id/image"
+    app:layout_constraintBottom_toTopOf="@id/subject"/>
     <TextView
         android:id="@+id/subject"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="64dp"
+        android:layout_height="14dp"
         app:layout_constraintStart_toStartOf="@id/name"
-        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintTop_toBottomOf="@id/rating"
         android:text="Biology"
         android:maxLines="1"
         android:textSize="13dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/description"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp" />
 
     <TextView
         android:id="@+id/description"
@@ -62,7 +74,7 @@ app:layout_constraintStart_toEndOf="@id/image"
         app:layout_constraintEnd_toEndOf="@id/card"
         android:layout_marginEnd="15dp"
         android:text="erdy tugiy uobybu rfvyu yufuh gguytu yuuy ibhvy fghkjnbvg hggug."
-        android:textSize="13dp"/>
+        android:textSize="10dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

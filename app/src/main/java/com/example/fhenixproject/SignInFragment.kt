@@ -19,16 +19,6 @@ class SignInFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var emailRegex: Regex
 
-    /*  override fun onStart() {
-          super.onStart()
-          if (auth.currentUser != null) {
-              val fragmentTransaction = parentFragmentManager.beginTransaction()
-              fragmentTransaction.replace(R.id.fragment_container_view, SaveUserFragment())
-              fragmentTransaction.addToBackStack(null).commit()
-          }
-      }
-  */
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,12 +33,12 @@ class SignInFragment : Fragment() {
                 binding.emailTxt.text.toString(),
                 binding.passwordTxt.text.toString()
             )
-            loadHomeFragment()
+            loadProvinceFragment()
         }
         binding.signUpTxt.setOnClickListener {
             loadSignUpFragment()
         }
-        return  binding.root
+        return binding.root
     }
 
     private fun loginUser(email: String, password: String) {
@@ -63,7 +53,7 @@ class SignInFragment : Fragment() {
         try {
             auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                 if (it.isSuccessful) {
-                    loadHomeFragment()
+                    loadProvinceFragment()
                 } else {
                     Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
                     Log.e(tag, "loginUser failed: ${it.exception?.message}")
@@ -76,9 +66,9 @@ class SignInFragment : Fragment() {
 
     }
 
-    fun loadHomeFragment() {
+    fun loadProvinceFragment() {
         val fragmentTransaction = parentFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragment_container_view, HomeFragment())
+        fragmentTransaction.replace(R.id.fragment_container_view, ProvinceFragment())
         fragmentTransaction.addToBackStack(null).commit()
     }
 

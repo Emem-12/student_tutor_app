@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fhenixproject.databinding.TeacherViewBinding
 
-class TeachersAdapter(private  val context: Context,private val teachers: MutableList<Teachers>):
-        RecyclerView.Adapter<TeachersAdapter.TeachersViewHolder>() {
+class TeachersAdapter(private val context: Context, private val teachers: MutableList<Teachers>) :
+    RecyclerView.Adapter<TeachersAdapter.TeachersViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

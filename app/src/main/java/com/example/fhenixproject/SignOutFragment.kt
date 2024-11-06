@@ -82,7 +82,7 @@ class SignOutFragment : Fragment() {
                 if (task.isSuccessful) {
                     Toast.makeText(context, "Sign up successful!", Toast.LENGTH_LONG).show()
                     auth.currentUser?.sendEmailVerification()
-                    saveUserInfo(name,email,password)
+                    saveUserInfo(name, email, password)
                 } else {
                     Toast.makeText(context, task.exception?.message, Toast.LENGTH_SHORT).show()
                 }
@@ -107,13 +107,16 @@ class SignOutFragment : Fragment() {
             return
         }
 
-        //Its time to save
         val user = User(auth.currentUser!!.uid, name.trim(), email.trim(), password.trim())
         try {
             firestore.collection("users").document(auth.currentUser!!.uid).set(user)
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
-                        Toast.makeText(context, "Data has been set successfully", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            context,
+                            "Data has been set successfully",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         loadSignInFragment()
                     } else {
                         Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
