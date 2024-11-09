@@ -11,7 +11,7 @@ import com.example.fhenixproject.databinding.FragmentSignOutBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-class SignOutFragment : Fragment() {
+class SignUpFragment : Fragment() {
     private lateinit var binding: FragmentSignOutBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
@@ -27,21 +27,32 @@ class SignOutFragment : Fragment() {
         firestore = FirebaseFirestore.getInstance()
         emailRegex = Regex("[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}")
 
+
         binding.signInTxt.setOnClickListener {
             loadSignInFragment()
         }
         binding.signupBtn.setOnClickListener {
-            signUp(
-                binding.name.text.toString(),
-                binding.email.text.toString(),
-                binding.password.text.toString()
-            )
-            loadSignInFragment()
+            val email = binding.email.text.toString()
+            val password = binding.password.text.toString()
+            val name = binding.name.text.toString()
+
+            if (areFieldsValid(email, password, name)) {
+                signUp(email, password, name)
+            }
 
         }
 
+     /*       signUp(
+                binding.email.text.toString(),
+                binding.password.text.toString(),
+                binding.name.text.toString()
+            )
+            loadSignInFragment()
+
+*/
         return binding.root
     }
+
 
     private fun loadUserData() {
         val currentUserID = auth.currentUser!!.uid
@@ -67,36 +78,56 @@ class SignOutFragment : Fragment() {
 
 
     private fun signUp(email: String, password: String, name: String) {
-        if (email.isNotEmpty() && name.isNotEmpty() && password.isNotEmpty()) {
-            if (!emailRegex.matches(email)) {
-                binding.emailTxt.error = "invalid email"
-                return
-            }
-
-            if (password.length < 8) {
-                binding.passwordTxt.error = "password too short"
-                return
-            }
-
-            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(context, "Sign up successful!", Toast.LENGTH_LONG).show()
                     auth.currentUser?.sendEmailVerification()
                     saveUserInfo(name, email, password)
+                 /*   loadUserData()
+                    loadSignInFragment()*/
                 } else {
                     Toast.makeText(context, task.exception?.message, Toast.LENGTH_SHORT).show()
                 }
             }
-        } else {
-            Toast.makeText(context, "All field are required", Toast.LENGTH_LONG).show()
         }
 
+    private fun areFieldsValid(email: String, password: String, name: String): Boolean {
+        if (email.isEmpty() || password.isEmpty() || name.isEmpty()) {
+            Toast.makeText(context, "All fields are required", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (email.isEmpty()) {
+            binding.email.error = "Email is required"
+            return false
+        } else if (!emailRegex.matches(email)) {
+            binding.email.error = "Invalid email format"
+            return false
+        }
+
+        if (password.isEmpty()) {
+            binding.password.error = "Password is required"
+            return false
+        } else if (password.length < 8) {
+            binding.password.error = "Password must be at least 8 characters"
+            return false
+        }
+
+        if (name.isEmpty()) {
+            binding.name.error = "Name is required"
+            return false
+        }else if(name.length<3){
+            binding.name.error ="name is too short"
+            return false
+        }
+        return true
     }
+
 
     private fun saveUserInfo(name: String, email: String, password: String) {
         if (name.isBlank() || name.length < 2) {
             binding.name.error = "Your name is too short"
             return
+
         }
         if (email.isBlank() || email.length < 2) {
             binding.email.error = "Your name is too short"
@@ -106,6 +137,7 @@ class SignOutFragment : Fragment() {
             binding.password.error = "Your name is too short"
             return
         }
+        return
 
         val user = User(auth.currentUser!!.uid, name.trim(), email.trim(), password.trim())
         try {
@@ -117,6 +149,7 @@ class SignOutFragment : Fragment() {
                             "Data has been set successfully",
                             Toast.LENGTH_SHORT
                         ).show()
+                        loadUserData()
                         loadSignInFragment()
                     } else {
                         Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()

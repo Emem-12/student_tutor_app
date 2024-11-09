@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@+id/art_menu" android:title="Art" android:icon="@drawable/stream_ic"/>
+    <item android:id="@+id/science_menu" android:title="Science" android:icon="@drawable/stream_ic"/>
+    <item android:id="@+id/math_menu" android:title="Math" android:icon="@drawable/stream_ic"/>
+    <item android:id="@+id/commerce_menu" android:title="Commerce" android:icon="@drawable/stream_ic"/>
+</menu>

@@ -1,6 +1,5 @@
 package com.example.fhenixproject
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.fhenixproject.databinding.FragmentSignInBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -30,10 +28,9 @@ class SignInFragment : Fragment() {
 
         binding.signinBtn.setOnClickListener {
             loginUser(
-                binding.emailTxt.text.toString(),
-                binding.passwordTxt.text.toString()
+                binding.email.text.toString(),
+                binding.password.text.toString()
             )
-            loadProvinceFragment()
         }
         binding.signUpTxt.setOnClickListener {
             loadSignUpFragment()
@@ -42,20 +39,30 @@ class SignInFragment : Fragment() {
     }
 
     private fun loginUser(email: String, password: String) {
-        if (password.isBlank() || password.length < 8) {
-            binding.passwordTxt.error = "password is too short"
+        if (email.isEmpty()) {
+            binding.email.error = "Email is required"
+            return
+        } else if (!emailRegex.matches(email)) {
+            binding.email.error = "Invalid email format"
             return
         }
-        if (email.isBlank() || !emailRegex.matches(email)) {
-            binding.passwordTxt.error = "input a valid email"
+
+        if (password.isEmpty()) {
+            binding.password.error = "Password is required"
+            return
+        } else if (password.length < 8) {
+            binding.password.error = "Password must be at least 8 characters"
             return
         }
+
         try {
             auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                 if (it.isSuccessful) {
-                    loadProvinceFragment()
+                    val user =auth.currentUser
+                    println("Login successful: ${user?.email}")
+                    loadGradeSelectionFragment()
                 } else {
-                    Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "email or password mismatch", Toast.LENGTH_SHORT).show()
                     Log.e(tag, "loginUser failed: ${it.exception?.message}")
                 }
             }
@@ -66,15 +73,15 @@ class SignInFragment : Fragment() {
 
     }
 
-    fun loadProvinceFragment() {
+    fun loadGradeSelectionFragment() {
         val fragmentTransaction = parentFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragment_container_view, ProvinceFragment())
+        fragmentTransaction.replace(R.id.fragment_container_view, GradeSelectionFragment())
         fragmentTransaction.addToBackStack(null).commit()
     }
 
     fun loadSignUpFragment() {
         val fragmentTransaction = parentFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragment_container_view, SignOutFragment())
+        fragmentTransaction.replace(R.id.fragment_container_view, SignUpFragment())
         fragmentTransaction.addToBackStack(null).commit()
 
     }

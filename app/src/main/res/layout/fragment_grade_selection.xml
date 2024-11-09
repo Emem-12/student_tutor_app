@@ -10,22 +10,26 @@
         android:id="@+id/whats_your_grade"
         android:layout_width="227dp"
         android:layout_height="33dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
         android:text="What's your grade"
         android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/grade1to5Card"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_marginHorizontal="20dp"
-        android:background="@drawable/expandable_btn"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#fff"
         android:clickable="true"
         android:contextClickable="true"
         android:padding="8dp"
         app:cardElevation="0dp"
+        app:cornerRadius="8dp"
         app:layout_constraintTop_toBottomOf="@id/whats_your_grade" />
 
     <TextView
@@ -52,16 +56,17 @@
     />
 
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/grade6to9Card"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/expandable_btn"
+        android:backgroundTint="#fff"
         android:clickable="true"
         android:padding="8dp"
         app:cardElevation="0dp"
+        app:cornerRadius="8dp"
         app:layout_constraintTop_toBottomOf="@id/grade1to5Card" />
 
     <TextView
@@ -87,16 +92,17 @@
         app:layout_constraintTop_toTopOf="@id/grade6to9Card" />
     />
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/grade10to11Card"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/expandable_btn"
+        android:backgroundTint="#fff"
         android:clickable="true"
         android:padding="8dp"
         app:cardElevation="0dp"
+        app:cornerRadius="8dp"
         app:layout_constraintTop_toBottomOf="@id/grade6to9Card" />
 
     <TextView
@@ -122,16 +128,17 @@
         app:layout_constraintTop_toTopOf="@id/grade10to11Card" />
     />
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/grade12to13Card"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/expandable_btn"
+        android:backgroundTint="#fff"
         android:clickable="true"
         android:padding="8dp"
         app:cardElevation="0dp"
+        app:cornerRadius="8dp"
         app:layout_constraintTop_toBottomOf="@id/grade10to11Card" />
 
     <TextView
@@ -142,7 +149,6 @@
         android:text="Grade 12-13"
         android:textSize="17dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/btnArts"
         app:layout_constraintStart_toStartOf="@id/grade12to13Card"
         app:layout_constraintTop_toTopOf="@id/grade12to13Card" />
 
@@ -155,70 +161,19 @@
         app:layout_constraintBottom_toBottomOf="@id/grade12to13Card"
         app:layout_constraintEnd_toEndOf="@id/grade12to13Card"
         app:layout_constraintTop_toTopOf="@id/grade12to13Card" />
-    />
-
-    <LinearLayout
-        android:id="@+id/streamsContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/grade12to13"
-        app:layout_constraintStart_toStartOf="@id/grade12to13"
-        app:layout_constraintEnd_toEndOf="@id/grade12to13Toggle"
-        app:layout_constraintBottom_toBottomOf="@id/grade12to13Card"/>
-
-        <Button
-            android:id="@+id/btnArts"
-            android:layout_width="100dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:background="@drawable/option_btn"
-            android:text="Arts"
-            app:layout_constraintTop_toBottomOf="@id/grade12to13"
-            app:layout_constraintStart_toStartOf="@id/grade12to13"
-            app:layout_constraintBottom_toBottomOf="@id/grade12to13Card"
-            />
-<!--
-
-        <Button
-            android:id="@+id/btnScience"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/option_btn"
-            android:text="Science" />
-
-        <Button
-            android:id="@+id/btnMaths"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/option_btn"
-            android:text="Maths" />
-
-        <Button
-            android:id="@+id/btnCommerce"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/option_btn"
-            android:text="Commerce" />
--->
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/next_btn"
         android:layout_width="267dp"
         android:layout_height="61dp"
         android:layout_marginHorizontal="40dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="90dp"
         android:text="Next"
         android:textSize="20sp"
         android:textStyle="bold"
         app:cornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/skip_txt"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/grade12to13Card" />
 
@@ -226,15 +181,14 @@
         android:id="@+id/skip_txt"
         android:layout_width="35dp"
         android:layout_height="24dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="35dp"
+        android:text="Skip"
         android:textColor="#606EBF"
         android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/next_btn"
-        android:text="Skip"
-    app:layout_constraintBottom_toBottomOf="parent"
-    android:layout_marginBottom="35dp" />
+        app:layout_constraintTop_toBottomOf="@id/next_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

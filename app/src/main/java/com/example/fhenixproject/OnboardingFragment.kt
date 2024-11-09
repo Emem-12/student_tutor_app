@@ -30,7 +30,7 @@ class OnboardingFragment : Fragment() {
 
     fun loadSignUpFragment() {
         val fragmentTransaction = parentFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragment_container_view, SignOutFragment())
+        fragmentTransaction.replace(R.id.fragment_container_view, SignUpFragment())
         fragmentTransaction.addToBackStack(null).commit()
 
     }
